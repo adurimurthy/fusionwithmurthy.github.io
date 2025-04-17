@@ -1,0 +1,22 @@
+
+import requests
+
+# Sample ChatGPT (OpenAI) API call from OIC/OCI Function
+endpoint = "https://api.openai.com/v1/chat/completions"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+data = {
+    "model": "gpt-3.5-turbo",
+    "messages": [
+        {"role": "system", "content": "You are a financial report assistant."},
+        {"role": "user", "content": "Summarize this Fusion BI JSON output..."}
+    ],
+    "temperature": 0.7
+}
+
+response = requests.post(endpoint, headers=headers, json=data)
+
+# Print summary
+print(response.json()["choices"][0]["message"]["content"])
